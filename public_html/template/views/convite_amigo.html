@@ -1,0 +1,59 @@
+<headernav></headernav>
+
+
+
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
+
+
+<form id="form-email" ng-submit="convidarAmigoEmail()">
+
+  <md-input-container class="md-block ng-animate flex-gt-sm" flex-gt-sm="" data-ng-animate="2">
+    <label class="md-required" for="input_508">Convidar por E-mail</label>
+    <input  name="email" ng-model="formData.email" class="md-input" id="input_508">
+    <button type="submit" class="md-raised md-primary md-button md-ink-ripple">Convidar Amigos</button>
+  </md-input-container>
+
+</form>  
+
+
+
+<div class="dialog-demo-content" ng-show="mostraLoading == true"   layout="row" layout-wrap layout-margin layout-align="center"> 
+
+<md-progress-circular  md-mode="indeterminate"></md-progress-circular>
+
+</div>        
+
+
+</md-content>
+
+<button  ng-click="importarGmail()" id="btn-exportarGmail" class=" md-primary md-button md-ink-ripple">{{importarGmailText}}</button>
+
+<button ng-click="importarOutlook()" class=" md-primary md-button md-ink-ripple">{{importarOutlookText}}</button>
+
+
+
+<div layout-fill ng-if="amigos.length == 0">
+  <md-card>
+  <md-card-title>
+  <md-card-title-text>
+  <span class="md-headline">Nenhum amigo fez solicitação para ser anfitrião</span>
+</md-card-title-text>
+</md-card-title>
+</md-card>
+</div>
+<md-content class="_md">
+<md-list flex="" role="list" class="flex"> 
+<md-list-item class="md-2-line md-no-proxy _md" ng-repeat="amigo in amigos"   role="listitem">
+<img ng-src="{{amigo.picture}}" class="md-avatar"  src="{{amigo.picture}}">
+<div class="md-list-item-text">
+  <h3 class="ng-binding">{{amigo.name}}</h3>
+  <p>{{amigo.email}}</p>
+</div>
+<div class="md-secondary-container"></div>
+</md-list-item>
+<md-divider></md-divider>
+</md-list>
+</md-content>
+
+
+

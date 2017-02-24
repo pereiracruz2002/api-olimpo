@@ -1,0 +1,1 @@
+ALTER TABLE `events` CHANGE `price` `price` FLOAT(20,2) NULL DEFAULT '0.00';

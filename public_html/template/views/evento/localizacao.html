@@ -1,0 +1,54 @@
+<md-content class="md-padding">
+
+    <form name="LocalizacaoForm" ng-submit="nextStep()">
+
+        <md-input-container class="flex-gt-sm md-block md-input-has-value" flex-gt-sm="">
+            <label for="input_490">CEP(Somente números)</label>
+            <input type="text" ng-model="eventoFormData.zipcode"  ng-blur="resgataEndereco()" name="cep" class="md-input" id="input_490" aria-invalid="false" required>
+            <div ng-show="errorLocalizacaoZipCode == 1">Campo cep é obrigatório</div>
+        </md-input-container>
+
+
+        <md-input-container class="flex-gt-sm md-block md-input-has-value" flex-gt-sm="">
+            <label for="input_490">Endereço</label>
+            <input ng-model="eventoFormData.street" name="street" class="md-input" id="input_490" aria-invalid="false" required>
+            <div ng-show="errorLocalizacaoEndereco == 1">Campo endereço é obrigatório</div>
+        </md-input-container>
+
+        <md-input-container class="flex-gt-sm md-block md-input-has-value" flex-gt-sm="">
+            <label for="input_490">Número</label>
+            <input type="tel" ng-model="eventoFormData.number" name="number" class="md-input" id="input_490" aria-invalid="false" required>
+            <div ng-show="errorLocalizacaoNumero == 1">Campo numero é obrigatório</div>
+        </md-input-container>
+
+
+        <md-input-container class="flex-gt-sm md-block md-input-has-value" flex-gt-sm="">
+            <label for="input_490">Estado</label>
+            <input ng-model="eventoFormData.state" name="state" class="md-input" id="input_490" aria-invalid="false" required>
+            <div ng-show="errorLocalizacaoState == 1">Campo estado é obrigatório</div>
+        </md-input-container>
+
+        <md-input-container class="flex-gt-sm md-block md-input-has-value" flex-gt-sm="">
+            <label for="input_490">Cidade</label>
+            <input ng-model="eventoFormData.city" name="city" class="md-input" id="input_490" aria-invalid="false" required>
+            <div ng-show="errorLocalizacaoCity == 1">Campo cidade é obrigatório</div>
+        </md-input-container>
+
+        <md-input-container class="flex-gt-sm md-block md-input-has-value" flex-gt-sm="">
+            <label for="input_490">Bairro</label>
+            <input ng-model="eventoFormData.neighborhood" name="neighborhood" class="md-input" id="input_490" aria-invalid="false" required>
+            <div ng-show="errorLocalizacaoNeighborhood == 1">Campo bairro é obrigatório</div>
+        </md-input-container>
+
+
+        <div class="text-center" ng-if="!save_tab">
+            <a href="" ng-click="prevStep()" class="md-raised md-warn md-button md-ink-ripple"><md-icon>undo</md-icon> Anterior</a>
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="LocalizacaoForm.$invalid">Avançar <md-icon>forward</md-icon></button>
+        </div>
+        <div class="text-center" ng-if="save_tab">
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormConvidados.$invalid">Salvar</button>
+        </div>
+    </form>
+   
+</md-content>
+

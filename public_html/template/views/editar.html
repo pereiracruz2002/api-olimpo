@@ -1,0 +1,45 @@
+<headernav></headernav>
+
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
+
+  
+  <div flex-xs flex-gt-xs="50" layout="column">
+        <md-card>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Mudar Imagem de perfil</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+
+
+          <figure id="foto-atual">
+            <img src="{{user.picture}}" alt="">
+          </figure>
+
+
+          <label for="input-file-id" class="md-button md-raised md-primary">Escolha uma imagem</label>
+
+          <input type="file" class="ng-hide" name="imagem" id="input-file-id" file-model="imagem_upload">
+           
+          </md-card-content>
+     
+        </md-card>
+  
+        
+      </div>
+
+
+
+
+
+
+       
+
+
+</md-content>
+
+
+
+
+

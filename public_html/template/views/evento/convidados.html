@@ -1,0 +1,32 @@
+<md-content class="md-padding">
+    <form name="EventoFormConvidados" ng-submit="nextStep()">
+        <md-input-container class="md-block">
+            <label for="price">Valor por inscrição</label>
+            <input type="text" ng-model="eventoFormData.price" format="number" zero-filter="true"  name="price" class="md-input" id="price" required>
+            <div class="md-errors-spacer"></div>
+            <div ng-show="errorPreco == 1">Campo preço é obrigatório</div> 
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label for="num_users">Quantidade máxima de Convidados</label>
+            <input type="tel" ng-model="eventoFormData.num_users" name="invite_limit" class="md-input" id="num_users" min="0" required>
+           
+            <div ng-show="errorConvidados == 1">Campo número de convidados é obrigatório</div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label for="invite_limit">Quantidade máxima de acompanhantes por convidado</label>
+            <input type="tel" ng-model="eventoFormData.invite_limit" name="invite_limit" class="md-input" id="invite_limit" min="0" ng-max="{{eventoFormData.num_users}}" required>
+           
+            <div ng-show="errorAcompanhantes == 1">Campo número de acompanhantes é obrigatório</div>
+        </md-input-container>
+
+        <div class="text-center" ng-if="!save_tab">
+            <a href="" ng-click="prevStep()" class="md-raised md-warn md-button md-ink-ripple"><md-icon>undo</md-icon> Anterior</a>
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormConvidados.$invalid">Avançar <md-icon>forward</md-icon></a>
+        </div>
+        <div class="text-center" ng-if="save_tab">
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormConvidados.$invalid">Salvar</button>
+        </div>
+    </form>
+</md-content>

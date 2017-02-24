@@ -1,0 +1,77 @@
+<div layout="column" flex id="content" role="main">
+    <md-content layout="vertical" flex id="content">
+        <div layout="row" layout-align="center center" layout-fill>
+            <md-card class="md-whiteframe-z1" layout="column" flex="50" layout-padding ng-class="tab==1 ? '' : 'hide'">
+                <md-card-header>
+                    <md-card-avatar>
+                        <md-icon class="md-avatar-icon"><i class="material-icons md-dark md-inactive">account_circle</i></md-icon>
+                    </md-card-avatar>
+                    <md-card-header-text layout="row">
+                        <span class="md-headline" layout="column" layout-align="center center">Login</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-content>
+                    <form ng-submit="doLogin()" class="panel panel-default">
+                        <md-input-container  class="md-block">
+                            <label>Email</label>
+                            <input type="email" ng-model="loginFormData.email" required ng-disabled="loading_login" />
+                        </md-input-container>
+                        <md-input-container  class="md-block">
+                            <label>Senha</label>
+                            <input type="password" ng-model="loginFormData.password" required ng-disabled="loading_login" />
+                        </md-input-container>
+
+                        <div layout="row" layout-sm="column" layout-align="space-around" ng-show="loading_login">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        
+                        <md-input-container  class="md-block">
+                            <md-button ng-hide="loading_login" class="md-raised md-primary" layout-fill type="submit">Login</md-button>
+                        </md-input-container>
+                        <div layout="row" ng-hide="loading_login">
+                            <md-button layout="column" flex="50"  class="md-raised" ng-click="fbLogin()">Entrar com Facebook</md-button>
+                            <md-button layout="column" flex="50" ng-click="tab=2" >Esqueci minha senha</md-button>
+                        </div>
+                    </form>
+                </md-card-content>
+            </md-card>
+
+            <md-card class="md-whiteframe-z1" layout="column" flex="50" layout-padding ng-class="tab==2 ? '' : 'hide'">
+                <md-card-header>
+                    <md-card-avatar>
+                        <a href="" ng-click="tab=1"><md-icon class="md-avatar-icon"><i class="material-icons md-dark md-inactive">undo</i></md-icon></a>
+                    </md-card-avatar>
+                    <md-card-header-text layout="row">
+                        <span class="md-headline" layout="column" layout-align="center center">Esqueci minha Senha</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-content>
+                    <form ng-submit="lembrete()" class="panel panel-warning">
+                        <div class="col-xs-12">
+                            <p class="alert alert-info">Coloque seu email cadastrado</p>
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="erro_lembrete"><span ng-bind-html="erro_lembrete | trustAsHTML "></span></div>
+                        <div class="alert alert-success" ng-show="sucesso_lembrete">Sua senha foi recuperada com sucesso, acesse seu email e siga as instruções.</div>
+                        <md-input-container  class="md-block">
+                            <label>Email</label>
+                            <input type="email" ng-model="lembreteFormData.email" required ng-disabled="loading_login" />
+                        </md-input-container>
+                        <div layout="row" layout-sm="column" layout-align="space-around" ng-show="loading_login">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <md-input-container  class="md-block">
+                            <md-button ng-hide="loading_lembrete" class="md-raised md-primary" layout-fill type="submit">Recuperar Senha</md-button>
+                        </md-input-container>
+                    </form>
+
+                </md-card-content>
+            </md-card>
+
+
+        </div><!-- /.layout-fill -->
+    </md-content>
+</div><!-- /.col -->
+
+
+<div class="modal-backdrop" ng-show="termos==1" ng-class="termos==1 ? 'fade in' : ''"></div>

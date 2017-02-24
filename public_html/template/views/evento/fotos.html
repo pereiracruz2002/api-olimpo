@@ -1,0 +1,37 @@
+<md-content class="md-padding">
+    <div ng-cloak>
+        <md-content class="md-padding" layout-wrap layout-xs="column" layout="row" >
+            <div flex="25" flex-xs flex-gt-xs="25" layout="column"  class="md-card-image" >
+                <md-card>
+                    <md-card-content>
+                        <article>
+                            <label for="input-file-id" class="text-center label-input-file">
+                                <p><i class="material-icons md-display-4">insert_photo</i></p>
+                                <p><span class="md-button md-raised"><md-icon>add_circle</md-icon> Adicionar Imagem</span></p>
+                            </label>
+                        </article>
+                    </md-card-content>
+                </md-card>
+            </div>
+
+            <div flex="25" ng-repeat="(key, foto) in pictures"  flex-xs flex-gt-xs="25" layout="column"  class="md-card-image" >
+                <md-card>
+                    <img ng-src="{{foto.href}}">
+                    <md-card-content>
+                        <article>
+                            <p class="md-primary md-button md-ink-ripple" ng-show="foto.principal == '1'">Principal</p>
+                            <a class="md-raised md-primary md-button md-ink-ripple" ng-click="tornarPrincipal(key)" ng-show="foto.principal == '0'" >Tornar Principal</a>
+                            <a class="md-raised md-warn md-button md-ink-ripple" ng-click="excluirImagem(key)" >Excluir</a>
+                        </article>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-content>
+    </div>
+
+    <md-divider></md-divider>
+    <div class="text-center" ng-if="!save_tab">
+        <a href="" ng-click="prevStep()" class="md-raised md-warn md-button md-ink-ripple"><md-icon>undo</md-icon> Anterior</a>
+        <md-button ng-click="sendFormEvent();"  class="md-raised md-primary">Finalizar <md-icon>done</md-icon></md-button>
+    </div>
+</md-content>

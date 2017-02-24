@@ -1,0 +1,24 @@
+    <headernav></headernav>
+    <div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom md-no-select-click="true" md-selected="data.selectedIndex">
+            <md-tab md-active="(tab == 1)" label="Dados do Evento" ng-disabled="tab != 1">
+                <div ng-include="'template/views/evento/dados.html'"></div>
+            </md-tab>
+            <md-tab md-active="(tab == 2)" label="Inscrições" ng-disabled="tab != 2">
+                <div ng-include="'template/views/evento/convidados.html'"></div>
+            </md-tab>
+            
+            <md-tab md-active="(tab == 3)" label="Sobre o local"  ng-disabled="tab != 3">
+                <div ng-include="'template/views/evento/local.html'"></div>
+            </md-tab >
+            <md-tab md-active="(tab == 4)" label="Localização" ng-disabled="tab != 4">
+                <div ng-include="'template/views/evento/localizacao.html'"></div>
+            </md-tab>
+            <md-tab md-active="(tab == 5)" label="Fotos" ng-disabled="tab != 5">
+                <input type="file" class="ng-hide" name="imagem" id="input-file-id" file-model="imagem_upload" />
+                <div ng-include="'template/views/evento/fotos.html'"></div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

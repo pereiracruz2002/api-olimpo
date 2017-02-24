@@ -1,0 +1,34 @@
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-show="user">
+    <md-toolbar class="md-tall md-primary">
+        <span flex></span>
+        <div class="md-toolbar-tools-bottom inset">
+            <img ng-src="{{user.picture}}" />
+            <span></span>
+            <div>{{user.name}}</div>
+            <div>{{user.email}}</div>
+        </div>
+    </md-toolbar>
+
+    <md-list flex>
+        <md-list-item ng-repeat="item in menu" ng-click="goTo(item.link)" ng-click="goTo(item.link)">
+            <div class="inset">
+                <md-icon>{{item.icon}}</md-icon>
+            </div>
+            <div class="inset">{{item.title}}</div>
+        </md-list-item>
+
+        <md-list-item ng-repeat="item in admin" ng-click="goTo(item.link)">
+            <div class="inset">
+                <md-icon>{{item.icon}}</md-icon>
+            </div>
+            <div class="inset">{{item.title}}</div>
+        </md-list-item>
+
+        <md-list-item ng-click="logout()">
+            <div class="inset">
+                <md-icon>exit_to_app</md-icon>
+            </div>
+            <div class="inset">Sair</div>
+        </md-list-item>
+    </md-list>
+</md-sidenav>

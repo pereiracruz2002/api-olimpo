@@ -1,0 +1,32 @@
+<div class="relative" role="main">
+	<md-toolbar ng-show="!showSearch">
+        <div class="md-toolbar-tools">
+          <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+            <md-icon>menu</md-icon>
+          </md-button>
+          <h3>
+            Dinner 4 Friends 
+          </h3>
+          <span flex></span>
+          <md-button aria-label="Search" ng-click="showSearch = !showSearch">
+            <md-icon>search</md-icon>
+          </md-button>
+
+        </div>
+      </md-toolbar>
+      <md-toolbar class="md-hue-1" ng-show="showSearch">
+        <div class="md-toolbar-tools">
+          <md-button ng-click="showSearch = !showSearch" aria-label="Back">
+            <md-icon>arrow_back</md-icon>
+          </md-button>
+
+          <md-input-container md-theme="input" flex>
+            <label>Procurar</label>
+            <input ng-model="search.who" placeholder="Procurar por:">
+          </md-input-container>
+          <md-button aria-label="Procurar" ng-click="showSearch = !showSearch">
+            <md-icon>search</md-icon>
+          </md-button>
+        </div>
+	</md-toolbar>
+</div>

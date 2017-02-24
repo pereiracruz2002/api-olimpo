@@ -1,0 +1,119 @@
+<headernav></headernav>
+<div ng-cloak>
+    <md-fab-speed-dial md-direction="up"  class="md-scale md-fab-bottom-right">
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-fab md-warn">
+                <md-tooltip md-direction="left">
+                    Convidar Amigos
+                </md-tooltip>
+
+                <md-icon aria-label="Convidar Amigos">group_add</md-icon>
+            </md-button>
+        </md-fab-trigger>
+
+
+        <md-fab-actions>
+            <md-button aria-label="Convite por E-mail" ng-click="showPrompt($event)" class="md-fab  md-medium">
+                <md-tooltip md-direction="left">
+                    Convidar por Email 
+                </md-tooltip>
+
+                <md-icon aria-label="Convite por E-mail">mail</md-icon>
+            </md-button>
+
+            <md-button aria-label="Convidar Lista"  ng-click="convidarLista()"  class="md-fab md-medium">
+                <md-tooltip md-direction="left">
+                    Convidar meus amigos do Aplicativo 
+                </md-tooltip>
+
+                <md-icon aria-label="Convidar Lista">group</md-icon>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+
+
+    <md-progress-linear md-mode="indeterminate" ng-disabled="!loading"></md-progress-linear>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab md-active="(tab == 1)" label="Dados do Evento">
+                <div ng-include="'template/views/evento/dados.html'"></div>
+            </md-tab>
+            <md-tab md-active="(tab == 2)" label="Inscrições">
+                <div ng-include="'template/views/evento/convidados.html'"></div>
+            </md-tab>
+            
+            <md-tab md-active="(tab == 3)" label="Sobre o local">
+                <div ng-include="'template/views/evento/local.html'"></div>
+            </md-tab >
+            <md-tab md-active="(tab == 4)" label="Localização">
+                <div ng-include="'template/views/evento/localizacao.html'"></div>
+            </md-tab>
+            <md-tab md-active="(tab == 5)" label="Fotos">
+                <input type="file" class="ng-hide" name="imagem" id="input-file-id" file-model="imagem_upload" />
+                <div ng-include="'template/views/evento/fotos.html'"></div>
+            </md-tab>
+
+            <md-tab md-active="(tab == 6)" label="Inscritos">
+                <md-content class="md-padding">
+                    <div class="dialog-demo-content" ng-show="mostraLoading == true"   layout="row" layout-wrap layout-margin layout-align="center"> 
+                        <md-progress-circular  md-mode="indeterminate"></md-progress-circular>
+                    </div> 
+
+                    <h3>Lista de Convidados</h3>
+                    <div class="table-responsive">
+                        <md-list flex class="tableflex">
+                        <div layout="row" class="tbheader">
+                            <div flex='25' layout="row" layout-align="left center">#</div>
+                            <div flex='25' layout="row" layout-align="left center">Nome Completo</div>
+                            <div flex='25' layout="row" layout-align="left center">E-mail</div>
+                            <div flex='25' layout="row" layout-align="left center">Detalhes</div>
+                        </div>
+                        <div layout="row" ng-repeat="convidado in listagemConvidados">
+                            <div flex='25' layout="row" layout-align="left center">{{convidado.user_id}}</div>
+                            <div flex="25" layout="row" layout-align="left center">{{convidado.name}}</div>
+                            <div flex="25" layout="row" layout-align="left center">{{convidado.email}}</div>
+                            <div flex="25" layout="row" layout-align="left center">
+                                <a href="/#!/amigo/convidado/{{evento}}/{{convidado.user_id}}" class="md-raised md-primary md-button md-ink-ripple">Sobre</a>
+                            </div>
+                        </div>
+                        </md-list>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab md-active="(tab == 7)" label="Amigos">
+                <md-content class="md-padding">
+                    <div class="dialog-demo-content" ng-show="mostraLoading == true"   layout="row" layout-wrap layout-margin layout-align="center"> 
+                        <md-progress-circular  md-mode="indeterminate"></md-progress-circular>
+                    </div> 
+
+                    <h3>Lista à Convidar</h3>
+                                 
+                    <md-list flex class="tableflex">
+                        <div layout="row" class="tbheader">
+                            <div flex='25' layout="row" layout-align="left center">#</div>
+                            <div flex='25' layout="row" layout-align="left center">Nome Completo</div>
+                            <div flex='25' layout="row" layout-align="left center">E-mail</div>
+                            <div flex='25' layout="row" layout-align="left center">Detalhes</div>
+                            <div flex='25' layout="row" layout-align="left center">Convidar</div>
+                        </div>
+
+                        <div layout="row" ng-if="listagemNaoConvidado.length == 0">
+                            <div flex='100' layout="row"  layout-align="center center">
+                                Você não possui amigos a convidar no momento
+                            </div>
+                        </div>
+                        <div layout="row" ng-repeat="naoconvidado in listagemNaoConvidados">
+                            <div flex='25' layout="row" layout-align="left center">{{naoconvidado.user_id}}</div>
+                            <div flex="25" layout="row" layout-align="left center">{{naoconvidado.name}}</div>
+                            <div flex="25" layout="row" layout-align="left center">{{naoconvidado.email}}</div>
+                            <div flex="25" layout="row" layout-align="left center">
+                                <a href="/#!/amigo/convidado/{{evento}}/{{naoconvidado.user_id}}" class="md-raised md-primary md-button md-ink-ripple">Sobre</a>
+                            </div>
+                            <div flex="25" layout="row" layout-align="left center"><a ng-click="convidar(naoconvidado.user_id)" class="md-raised md-primary md-button md-ink-rippls">Convidar</a></div>
+                        </div>
+                    </md-list>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

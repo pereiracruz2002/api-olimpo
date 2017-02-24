@@ -1,0 +1,105 @@
+    <headernav></headernav>
+    <md-tabs class="md-primary" md-dynamic-height>
+        <md-tab label="Últimos Eventos">
+            <md-content class="md-padding" layout-wrap layout-xs="column" layout="row">
+                <div layout-fill ng-if="eventos.length == 0">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Você ainda não tem nenhum evento</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </md-card>
+                </div> 
+                <div layout="row" ng-if="eventos.length > 0">
+                    <div ng-cloak>
+                        <md-content class="md-padding" layout-wrap layout-xs="column" layout="row" >
+                            <div flex="30" ng-repeat="evento in eventos"  flex-xs flex-gt-xs="30" layout="column"  class="md-card-image" >
+                            <md-card>
+                                <a href="/#!/eventos/detalhes/{{evento.event_id}}"><img ng-src="uploads/{{evento.picture}}" class="img-card" alt="{{evento.name}}"></a>
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{evento.name}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-content>
+                                    <p>{{evento.description}}</p>
+                                </md-card-content>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <md-button href="/#!/eventos/{{evento.event_id}}">Detalhes</md-button>
+                                </md-card-actions>
+                            </md-card>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Solicitações para ser Anfitrião">
+            <md-content>
+            <div layout-fill ng-if="solitacoes.length == 0">
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Nenhum amigo fez solicitação para ser anfitrião</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div> 
+            <div layout-padding>
+                <div flex>
+                    <md-list>
+                        <div ng-repeat="(key, person) in solitacoes">
+                            <md-list-item class="noright" layout="row" ng-click="openDetalhes(person)">
+                                <img alt="{{ person.name }}" ng-src="{{ person.picture }}" class="md-avatar" />
+                                <p>{{ person.name }}</p>
+                                <div flex></div>
+                                <md-button ng-click="aprovarChef(key, person)" class="md-accent">
+                                    Aprovar
+                                </md-button>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                            <md-card layout="column" layout-align="start start">
+                                <md-card-title>
+                                    <md-card-title-text>
+                                        <md-list layout="row">
+                                            <md-list-item flex>
+                                                <md-icon>phone</md-icon>
+                                                    {{person.extra.telefone}}
+                                            </md-list-item>
+                                            <md-list-item flex>
+                                                <md-icon>email</md-icon>
+                                                    {{person.email}}
+                                            </md-list-item>
+                                            <md-list-item flex>
+                                            <md-icon>room</md-icon>
+                                                {{person.extra.endereco}}, {{person.extra.numero}} {{person.extra.complemento}} - {{person.extra.cidade}} - {{person.extra.estado}}
+                                            </md-list-item>
+                                        </md-list>
+                                        <md-list layout="row" layout-align="start start">
+                                            <md-list-item>
+                                                <md-icon>list</md-icon>
+                                                    {{person.extra.curriculo}}
+                                            </md-list-item>
+                                            <md-list-item>
+                                                <md-icon>content_paste</md-icon>
+                                                    <div layout="column">
+                                                        <p>Especialidades</p>
+                                                        <ul>
+                                                            <li ng-repeat="especialidade in person.extra.especialidades">{{especialidade}}</li>
+                                                        </ul>
+                                                    </div>
+                                            </md-list-item>
+                                        </md-list>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </md-card>
+                        </div>
+                    </md-list>
+                </div>
+            </div>
+        </md-content>
+    </md-tab>
+</md-tabs>
+
+

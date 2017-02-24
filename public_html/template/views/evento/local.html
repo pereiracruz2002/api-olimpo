@@ -1,0 +1,72 @@
+<md-content class="md-padding">
+
+    <form name="EventoFormLocal" ng-submit="nextStep()">
+        <div ng-repeat="form in Answers">
+            <div ng-if="form.field_type =='text'">
+                <md-input-container class="md-block">
+                    <label class="md-required" for="{{form.namefields}}">{{form.name}}</label>
+                    <input  type="text" class="md-input" aria-invalid="true" ng-trim="false" required  id="{{form.namefields}}"  name="{{form.namefields}}" ng-model="Answers[$index].value" />
+                     <div ng-show="errorLocal == 1">Campo {{form.name}} é obrigatório</div>
+
+                </md-input-container>
+            </div>
+
+            <div ng-if="form.field_type =='radio'">
+                <span>{{form.name}}</span>
+                <md-radio-group ng-model="Answers[$index].value">
+                    <div ng-repeat="option in form.field_values|split">
+                        <md-radio-button name="{{form.namefields}}" value="{{option}}" class="md-primary">{{option}}</md-radio-button>
+                    </div>
+                </md-radio-group> 
+                <div ng-show="errorLocal == 1">Campo {{form.name}} é obrigatório</div>
+            </div>
+
+            <div ng-if="form.field_type =='checkbox'">
+                <div ng-repeat="option in form.field_values|split">
+                    <div flex-gt-sm="50">
+                        <md-checkbox  aria-label="{{form.name}}">
+                            {{form.name}}
+                        </md-checkbox>
+                    </div>
+                    <div flex-gt-sm="50">
+                        <div ng-repeat="option in form.field_values|split">
+                            <md-checkbox ng-model="Answers[form.namefields]" aria-label="Checkbox 2" ng-true-value="{{option}}"  class="md-warn md-align-top-left" flex="">
+                        </div>
+                    </div>
+                    <div ng-show="errorLocal == 1">Campo {{form.name}} é obrigatório</div>
+                </div>
+            </div>
+
+            <div ng-if="form.field_type=='textarea'">
+                <md-input-container class="md-block">
+                    <label>{{form.name}}</label>
+                    <textarea name="{{form.namefields}}" ng-model="Answers[form.namefields]" rows="5" md-select-on-focus=""></textarea>
+                    <div ng-show="errorLocal == 1">Campo {{form.name}} é obrigatório</div>
+                </md-input-container>
+            </div>
+
+            <div ng-if="form.field_type=='select'">
+                <md-input-container class="md-block">
+                    <label>Tipo do Evento</label>
+                    <md-select ng-model="Answers[form.namefields]">
+                        <md-option ng-repeat="option in form.field_values|split" value="{{option.event_type_id}}">
+                            {{option.name}}
+                        </md-option>
+                    </md-select>
+                    <div ng-show="errorLocal == 1">Campo {{form.name}} é obrigatório</div>
+                </md-input-container>
+            </div>
+
+        </div>
+
+        <div class="text-center" ng-if="!save_tab">
+            <a href="" ng-click="prevStep()" class="md-raised md-warn md-button md-ink-ripple"><md-icon>undo</md-icon> Anterior</a>
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormLocal.$invalid">Avançar <md-icon>forward</md-icon></a>
+        </div>
+        <div class="text-center" ng-if="save_tab">
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormConvidados.$invalid">Salvar</button>
+        </div>
+    </form>
+
+</md-content>
+

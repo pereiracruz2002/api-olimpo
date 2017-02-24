@@ -1,0 +1,72 @@
+<md-content class="md-padding">
+    <form name="EventoFormNovo" ng-submit="nextStep()">
+        <div layout="row">
+            <md-input-container class="md-block">
+                <label>Tipo do Evento</label>
+                <md-select ng-model="eventoFormData.event_type_id">
+                  <md-option ng-repeat="option in typesOptions" value="{{option.event_type_id}}">
+                    {{option.name}}
+                  </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container flex="50">
+                <label>Título do Evento</label>
+                <input ng-model="eventoFormData.name" required>
+            </md-input-container>
+
+            <md-input-container flex="20">
+                <label>Data do Evento</label>
+                <md-datepicker ng-model="eventoFormData.start"  required md-open-on-focus></md-datepicker>
+            </md-input-container>
+
+            <md-input-container flex="10">
+                <label>Hora</label>
+                <input ng-model="eventoFormData.start_hour" required mask="99:99">
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Evento Púlico ou Privado?</label>
+                <md-select ng-model="eventoFormData.private" placeholder="Evento Púlico ou Privado?" required>
+                    <md-option value="1">Evento Privado</md-option>
+                    <md-option value="0">Evento Púlico</md-option>
+                </md-select>
+                <md-tooltip md-direction="top">
+                    Escolha evento "Privado" se você deseja que apenas seus amigos possam participar do seu evento.
+                    Ou "Púbico" para que qualquer pessoa no aplicativo possa se inscrever no evento.
+                </md-tooltip>
+
+            </md-input-container>
+
+            <md-input-container flex>
+                <md-select ng-model="eventoFormData.status" placeholder="Evento Disponível?" required>
+                    <md-option value="enable">Evento Disponível</md-option>
+                    <md-option value="disable">Evento Indisponível</md-option>
+                </md-select>
+                <md-tooltip md-direction="top">
+                    Habilite ou desabilite as inscrições em seu evento.
+                </md-tooltip>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>Data Limite para Inscrições</label>
+                <md-datepicker md-max-date="eventoFormData.start" ng-model="eventoFormData.end_subscription" required placeholder="Data Limite para Inscrições" md-open-on-focus></md-datepicker>
+                <md-tooltip md-direction="top">
+                    Data limite para que seus convidados possam se inscrever e efetuar o pagamento de seu evento.
+                </md-tooltip>
+
+            </md-input-container>
+        </div>
+        
+        <md-input-container class="md-block">
+            <label>Descrição</label>
+            <textarea ng-model="eventoFormData.description" name="description" rows="5" md-select-on-focus="" required></textarea>
+        </md-input-container>
+
+        <div class="text-center">
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormNovo.$invalid" ng-if="!save_tab">Avançar <md-icon>forward</md-icon></button>
+            <button class="md-raised md-primary md-button md-ink-ripple" ng-disabled="EventoFormNovo.$invalid" ng-if="save_tab">Salvar</button>
+        </div>
+    </form>
+</md-content>
